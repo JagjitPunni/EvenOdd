@@ -12,13 +12,18 @@
     <link rel="stylesheet" href="/css/site.css" />
     <link rel="stylesheet" href="/css/prism.css" />
     <link rel="shortcut icon" href="img/favicon-32x32.png" type="favicon" />
+
+    <!--Google Fonts for Racing Sans One-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet" />
   </head>
 
   <body class="d-flex flex-column h-100">
     <!-- ==== Navbar Section ==== -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top text-white">
       <div class="container-fluid">
-        <a class="navbar-brand logoFont" href="#"><img src="/img/mylogo.png" class="d-inline-block align-text-top" height="26" alt="" /> EvenOdd</a>
+        <a class="navbar-brand logoFont" href="#"><img src="/img/mylogo.png" class="d-inline-block align-text-top" height="27" alt="Jsp Logo" />EvenOdd</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -34,10 +39,10 @@
               <a class="nav-link active" aria-current="page" href="code.html">Code</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" target="_blank" href="#">Git Repo</a>
+              <a class="nav-link" target="_blank" href="https://github.com/JagjitPunni/EvenOdd">Git Repo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" target="_blank" href="#">About</a>
+              <a class="nav-link" target="_blank" href="https://jagjitpunni.netlify.app">About</a>
             </li>
           </ul>
         </div>
@@ -51,22 +56,84 @@
           <div class="col-lg-8">
             <pre class="line-numbers">
               <code class="language-javascript">
-                //Call Hello World
-                  function helloWorld(){
-                  alert('Hello World');
-                  }
+            //get the values from the Page
+            //start or controller function
+            function getValues() {
+              //get values from the page
+              let startValue = document.getElementById('startValue').value;
+              let endValue = document.getElementById('endValue').value;
+
+              //We need to validate our input
+              //parse into integers with build-in function
+              startValue = parseInt(startValue);
+              endValue = parseInt(endValue);
+
+              if (Number.isInteger(startValue) && Number.isInteger(endValue)) {
+                //we need to call generateNumbers
+                let numbers = generateNumbers(startValue, endValue);
+                //we need to call displayNumbers
+                displayNumbers(numbers);
+              } else {
+                alert('You must enter integers');
+              }
+            }
+
+            //generate numbers from startvalue to the endValue
+            //logic functions(s)
+            function generateNumbers(sValue, eValue) {
+              let numbers = [];
+
+              //get all numbers from start to end
+              for (let i = sValue; i <= eValue; i++) {
+                //this will execute in a loop until index = eValue
+                numbers.push(i);
+              }
+              return numbers;
+            }
+
+            //display the numbers and mark even numbers in bold
+            //display or view functions
+            function displayNumbers(numbers) {
+              let templateRows = '';
+
+              for (let i = 0; i < numbers.length; i++) {
+                let className = 'even';
+
+                let number = numbers[i];
+
+                if (number % 2 == 0) {
+                  className = 'even';
+                } else {
+                  className = 'odd';
+                }
+                templateRows += `&lt;tr>&lt;td class="${className}" >${number}&lt;/td>&lt;/tr>
+              }
+
+              document.getElementById('results').innerHTML = templateRows;
+            }
               </code>
             </pre>
           </div>
           <div class="col-lg-4">
-            <p>The Code is structed in one function.</p>
-            <h5>Hello World</h5>
-            <p>helloWorld is a function that displays an alert with a message of "Hello World"</p>
+            <h5>Fundamental Programming Concepts</h5>
+            <p>This JavaScript exercise uses functions, DOM manipulation, loops, conditional statements, arrays and input validation to generate, format and display a list of numbers from user input on an HTML page.</p>
+            <div>
+              <p>Through this JavaScript exercise, I have gained experience in using various programming concepts such as:</p>
+              <ul>
+                <li>Utilizing functions to perform specific tasks</li>
+                <li>Manipulating the Document Object Model (DOM) to interact with and update web pages</li>
+                <li>Implementing loops to iterate through arrays and perform repetitive tasks</li>
+                <li>Using conditional statements to make decisions based on certain conditions</li>
+                <li>Utilizing arrays to store and manipulate data</li>
+                <li>Implementing input validation to ensure user input is in the correct format</li>
+                <li>Using template literals to create dynamic strings</li>
+                <li>Understanding the importance of clear and readable code</li>
+                <li>Understanding the importance of testing and debugging for building robust code.</li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>  
-      
-    
+      </div>
     </main>
     <!-- ==== Footer Section ==== -->
     <footer class="footer mt-auto py-3">
@@ -84,10 +151,10 @@
                 <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-2x"></i></a>
               </div>
               <div class="col social">
-                <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-2x"></i></a>
+                <a href="https://github.com/JagjitPunni" target="_blank" rel="noopener noreferrer"><i class="fab fa-github fa-2x"></i></a>
               </div>
               <div class="col social">
-                <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter fa-2x"></i></a>
+                <a href="https://twitter.com/JagjitPunni" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter fa-2x"></i></a>
               </div>
             </div>
           </div>
